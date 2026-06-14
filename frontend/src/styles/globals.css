@@ -1,5 +1,6 @@
 /* globals stylesheet */
 @import "tailwindcss";
+@import "./variables.css";
 
 html, body,#root{
     width: 100%;
