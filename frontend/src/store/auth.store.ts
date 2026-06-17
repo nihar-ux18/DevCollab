@@ -4,7 +4,7 @@ import type { AuthState, User } from "../types/auth.types";
 
 
 // TODO: Implement auth store
-export const useAuthStore = create<AuthState>() (
+export const useAuthStore = create<AuthState> () (
 	persist(
 		(set)=>({
 			user : null,

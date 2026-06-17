@@ -1,15 +1,19 @@
 import React from 'react';
+import { useAuthStore } from '../../store/auth.store';
+import { Navigate } from 'react-router-dom';
 
 interface PublicRouteProps {
-  children?: React.ReactNode;
+	children?: React.ReactNode;
 }
 
-export const PublicRoute: React.FC<PublicRouteProps> = ({ children }) => {
-  return (
-    <div className="publicroute">
-      {children || 'PublicRoute Component'}
-    </div>
-  );
-};
+export default function PublicRoute({ children,}: PublicRouteProps) {
+	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
-export default PublicRoute;
+	if(isAuthenticated){
+		return <Navigate to="/" replace />
+	}
+
+	return <>{children}</>
+}
+
+

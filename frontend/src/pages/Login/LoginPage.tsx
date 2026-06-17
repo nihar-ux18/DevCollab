@@ -7,19 +7,26 @@ import { useAuthStore } from "../../store/auth.store";
 
 export default function LoginPage() {
 	const navigate = useNavigate();
-	const login = useAuthStore((state)=>state.login);
+	const login = useAuthStore((state) => state.login);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleLogin = () => {
-		login({
-			id: "1",
-			name : "Nihar",
-			email,
-		});
+		if (
+			email === "demo@devflow.com" &&
+			password === "123456"
+		) {
+			login({
+				id: "1",
+				name: "Demo User",
+				email,
+			});
 
-		navigate("/");
+			navigate("/");
+		} else {
+			alert("Invalid credentials");
+		}
 	};
 
 	return (
@@ -28,14 +35,14 @@ export default function LoginPage() {
 				<h1 className="mb-6 text-2xl font-bold">Login</h1>
 
 				<div className="space-y-4">
-				<Input placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
-				<Input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-				<Button className="w-full" onClick={handleLogin} >Login</Button>
-				<Button variant="outline" className="w-full" >Login with Google</Button>
-				<Button variant="outline" className="w-full" >Login with GitHub</Button>
-				<p className="text-center text-sm">Don't have an account?{" "} 
-					<Link to ="/register" className="text-blue-500">Register</Link>
-				</p>
+					<Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+					<Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+					<Button className="w-full" onClick={handleLogin} >Login</Button>
+					<Button variant="outline" className="w-full" >Login with Google</Button>
+					<Button variant="outline" className="w-full" >Login with GitHub</Button>
+					<p className="text-center text-sm">Don't have an account?{" "}
+						<Link to="/register" className="text-blue-500">Register</Link>
+					</p>
 				</div>
 			</Card>
 		</div>
