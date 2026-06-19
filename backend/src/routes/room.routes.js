@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {createRoom, joinRoom, getRoom, leaveRoom} = require ('');
-const {protect} = require('../middleware/auth.middleware');
+const { createRoom, joinRoom, getRoom, leaveRoom } = require('../controllers/room.controller');
+const { protect } = require('../middleware/auth.middleware');
 
 router.post('/', protect, createRoom);
 router.post('/join/:roomId', protect, joinRoom);

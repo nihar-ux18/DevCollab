@@ -1,35 +1,42 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User.model.js');
+const User = require('../models/User.model');
 
-const protect = async(req, res, next) =>{
+const protect = async (req, res, next) => {
     let token;
 
-    if(req.header.authorization && req.header.authorization.startsWith('Bearer')){
-        try {
-            token = req.header.authorization.split(' ')[1];
-            const decode = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findById(decode.id).select('-password');
-            if(!req.user){
-                return res(401).json({
-                    success:false,
+    try {
+        // Check if token exists in headers
+        if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+            // Get token from header
+            token = req.headers.authorization.split(' ')[1];
+
+            // Verify token
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+            // Get user from token (exclude password)
+            req.user = await User.findById(decoded.id).select('-password');
+
+            if (!req.user) {
+                return res.status(401).json({
+                    success: false,
                     message: 'User not found'
                 });
             }
-            next();
-        } catch (error) {
-            console.error('Authorization Error: ', error);
+
+            next(); // ✅ This calls the next middleware/route handler
+        } else {
             return res.status(401).json({
                 success: false,
-                message: 'Not authoried, token failed'
+                message: 'Not authorized, no token'
             });
         }
-    }
-    if(!token){
+    } catch (error) {
+        console.error('Auth Error:', error);
         return res.status(401).json({
             success: false,
-            message: 'Not authorized, no token'
+            message: 'Not authorized, token failed'
         });
     }
 };
 
-module.exports = { protect};
+module.exports = { protect };

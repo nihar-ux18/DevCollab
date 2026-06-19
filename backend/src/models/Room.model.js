@@ -10,7 +10,7 @@ const RoomSchema = new mongoose.Schema({
         type: String,
         require: true,
         trim: true,
-        minlength: 50
+        maxlength: 50
     }, host: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -36,9 +36,9 @@ const RoomSchema = new mongoose.Schema({
     timestamps:true
 });
 
-RoomSchema.static.generateRoomId = function(){
+RoomSchema.statics.generateRoomId = function(){
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    const result = '';
+    let result = '';
     for (let i = 0; i < 6; i++) {
         result += chars.charAt(Math.floor(Math.random()*chars.length));
     }
