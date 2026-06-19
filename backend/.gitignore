@@ -30,5 +30,6 @@ test-*.html
 *.test.tmp
 
 # Logs
+
 logs/
 *.log
