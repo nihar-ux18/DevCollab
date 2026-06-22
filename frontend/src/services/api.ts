@@ -1,26 +1,23 @@
 import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { 
-  LoginCredentials, 
-  RegisterData, 
-  CreateRoomData, 
-  Room, 
-  User,
-  AuthResponse,
-  ApiResponse
-} from '../types';
+import { LoginCredentials, RegisterData, CreateRoomData, Room, User, AuthResponse, ApiResponse } from '../types';
 
-// Environment variable with fallback
-const API_URL: string = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const getApiUrl = (): string => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  return `${window.location.origin}/api`;
+};
 
-// Create axios instance with types
+const API_URL: string = getApiUrl();
+
 const api: AxiosInstance = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
 
-// Request interceptor with TypeScript
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     const token: string | null = localStorage.getItem('token');
@@ -32,20 +29,20 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor
 api.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => response,
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
 );
 
-// Auth Service with TypeScript
 export const authService = {
   register: (userData: RegisterData): Promise<AxiosResponse<AuthResponse>> => 
     api.post<AuthResponse>('/auth/register', userData),
@@ -57,11 +54,10 @@ export const authService = {
     api.get<ApiResponse<User>>('/auth/me'),
 };
 
-// Room Service with TypeScript
 export const roomService = {
   list: (): Promise<AxiosResponse<ApiResponse<Room[]>>> => 
     api.get<ApiResponse<Room[]>>('/rooms'),
-
+  
   create: (data: CreateRoomData): Promise<AxiosResponse<ApiResponse<Room>>> => 
     api.post<ApiResponse<Room>>('/rooms', data),
   
