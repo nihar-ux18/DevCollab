@@ -102,14 +102,10 @@ const Dashboard: React.FC = () => {
             <span className="material-symbols-outlined">dashboard</span>
             Dashboard
           </Link>
-          <a className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-150 ease-in-out font-label-sm text-label-sm" href="#history">
+          <Link className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-150 ease-in-out font-label-sm text-label-sm" to="/history">
             <span className="material-symbols-outlined">history</span>
-            View all history
-          </a>
-          <a className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-150 ease-in-out font-label-sm text-label-sm" href="#collaborators">
-            <span className="material-symbols-outlined">groups</span>
-            Collaborators
-          </a>
+            History
+          </Link>
           <Link className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-150 ease-in-out font-label-sm text-label-sm" to="/settings">
             <span className="material-symbols-outlined">settings</span>
             Settings
@@ -277,10 +273,10 @@ const Dashboard: React.FC = () => {
               <div className="bg-surface-container rounded-xl border border-outline-variant overflow-hidden">
                 <div className="p-6 border-b border-outline-variant flex justify-between items-center">
                   <h3 className="font-headline-md text-headline-md">Recent Rooms</h3>
-                  <button className="text-primary font-label-sm flex items-center gap-1 hover:underline border-none bg-transparent cursor-pointer">
+                  <Link to="/history" className="text-primary font-label-sm flex items-center gap-1 hover:underline border-none bg-transparent cursor-pointer no-underline">
                     View all history
                     <span className="material-symbols-outlined text-[16px]">chevron_right</span>
-                  </button>
+                  </Link>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">

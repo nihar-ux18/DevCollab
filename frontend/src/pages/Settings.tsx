@@ -36,14 +36,10 @@ const Settings: React.FC = () => {
             <span className="material-symbols-outlined">dashboard</span>
             Dashboard
           </Link>
-          <Link className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-150 ease-in-out font-label-sm text-label-sm" to="/dashboard#history">
+          <Link className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-150 ease-in-out font-label-sm text-label-sm" to="/history">
             <span className="material-symbols-outlined">history</span>
-            View all history
+            History
           </Link>
-          <a className="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant transition-all duration-150 ease-in-out font-label-sm text-label-sm" href="#collaborators">
-            <span className="material-symbols-outlined">groups</span>
-            Collaborators
-          </a>
           <Link className="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container border-l-2 border-primary transition-all duration-150 ease-in-out font-label-sm text-label-sm" to="/settings">
             <span className="material-symbols-outlined">settings</span>
             Settings
@@ -93,10 +89,6 @@ const Settings: React.FC = () => {
                 <a className="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-variant transition-all duration-150" href="#preferences">
                   <span className="material-symbols-outlined text-[20px]">tune</span>
                   <span className="font-label-sm text-label-sm">Preferences</span>
-                </a>
-                <a className="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-variant transition-all duration-150" href="#shortcuts">
-                  <span className="material-symbols-outlined text-[20px]">keyboard</span>
-                  <span className="font-label-sm text-label-sm">Shortcuts</span>
                 </a>
                 <a className="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-variant transition-all duration-150" href="#account">
                   <span className="material-symbols-outlined text-[20px]">lock</span>
@@ -196,40 +188,6 @@ const Settings: React.FC = () => {
                       <input checked={wordWrap} onChange={(e) => setWordWrap(e.target.checked)} className="sr-only peer" type="checkbox" />
                       <div className="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
                     </label>
-                  </div>
-                </div>
-              </section>
-
-              {/* Keyboard Shortcuts Section */}
-              <section className="space-y-6" id="shortcuts">
-                <div className="flex justify-between items-end">
-                  <div>
-                    <h3 className="text-headline-md font-headline-md text-on-surface">Keyboard Shortcuts</h3>
-                    <p className="text-on-surface-variant text-body-md mt-1">Master your workflow with custom bindings.</p>
-                  </div>
-                  <button className="text-primary text-label-sm border border-primary px-3 py-1 rounded hover:bg-primary/10 transition-colors bg-transparent cursor-pointer">Edit All</button>
-                </div>
-                <div className="bg-surface-container rounded-lg setting-card divide-y divide-outline-variant">
-                  <div className="flex justify-between items-center p-3">
-                    <span className="text-body-md text-on-surface-variant">Save File</span>
-                    <div className="flex gap-1">
-                      <kbd className="px-2 py-1 bg-surface-container-highest border border-outline-variant rounded font-code-md text-xs text-on-surface">Ctrl</kbd>
-                      <kbd className="px-2 py-1 bg-surface-container-highest border border-outline-variant rounded font-code-md text-xs text-on-surface">S</kbd>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center p-3">
-                    <span className="text-body-md text-on-surface-variant">Quick Search</span>
-                    <div className="flex gap-1">
-                      <kbd className="px-2 py-1 bg-surface-container-highest border border-outline-variant rounded font-code-md text-xs text-on-surface">Ctrl</kbd>
-                      <kbd className="px-2 py-1 bg-surface-container-highest border border-outline-variant rounded font-code-md text-xs text-on-surface">P</kbd>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center p-3">
-                    <span className="text-body-md text-on-surface-variant">Toggle Terminal</span>
-                    <div className="flex gap-1">
-                      <kbd className="px-2 py-1 bg-surface-container-highest border border-outline-variant rounded font-code-md text-xs text-on-surface">Ctrl</kbd>
-                      <kbd className="px-2 py-1 bg-surface-container-highest border border-outline-variant rounded font-code-md text-xs text-on-surface">`</kbd>
-                    </div>
                   </div>
                 </div>
               </section>

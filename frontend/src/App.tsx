@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Room from './pages/Room';
 import Settings from './pages/Settings';
 import DesignSystem from './pages/DesignSystem';
+import History from './pages/History';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -77,6 +78,14 @@ const AppContent: React.FC = () => {
             element={
               <ProtectedRoute>
                 <Settings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/history"
+            element={
+              <ProtectedRoute>
+                <History />
               </ProtectedRoute>
             }
           />
