@@ -19,8 +19,12 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "ignoreDeprecations": "6.0"
+    "types": ["react", "react-dom", "node"]
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
